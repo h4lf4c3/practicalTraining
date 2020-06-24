@@ -5,7 +5,7 @@ from urllib import parse
 import time
 import config
 
-client = redis.Redis(host=config.redis_host, port=config.redis_port)
+client = redis.Redis(host=config.redis_host, port=config.redis_port,password=config.redis_pw)
 
 import MySQLdb
 
