@@ -32,8 +32,6 @@ public class DataController {
 
         //查询redis获取性别占比
         Jedis jedis = new Jedis(Config.getString("redis.host"), 6379);
-        jedis.auth("123456");
-
         Map<String, String> map = jedis.hgetAll(key);
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -65,7 +63,6 @@ public class DataController {
 
         //查询redis获取性别占比
         Jedis jedis = new Jedis(Config.getString("redis.host"), 6379);
-        jedis.auth("123456");
 
         Map<String, String> map = jedis.hgetAll(key);
 

@@ -1,7 +1,6 @@
 package com.chris.compute
 
 import com.chris.common.Config
-import com.chris.common.Config
 import kafka.serializer.StringDecoder
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.hbase.client.{Get, HConnectionManager}
@@ -33,11 +32,11 @@ object ComputeGenderIndex {
 
     val params = Map(
       "zookeeper.connect" -> Config.getString("kafka.zookeeper.connect"),
-      "group.id" -> "asfaasdsasdas",
+      "group.id" -> "a",
       "auto.offset.reset" -> "smallest",
       "zookeeper.connection.timeout.ms" -> "10000"
     )
-    val topics = Map("comment" -> 4)
+    val topics = Map("com" -> 4)
 
     //读取kafka数据   评价表数据
     val commentDS: ReceiverInputDStream[(String, String)] = KafkaUtils.createStream[String, String, StringDecoder, StringDecoder](
@@ -54,6 +53,7 @@ object ComputeGenderIndex {
       .filter(_.split("\\|").length == 6)
 
 
+    //关联hbase微博用户表，取出性别
     val kvDS = filterDS.mapPartitions(iter => {
       //创建hbase连接
       val conf: Configuration = new Configuration

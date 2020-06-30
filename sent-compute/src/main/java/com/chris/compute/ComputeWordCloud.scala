@@ -78,7 +78,6 @@ object ComputeWordCloud {
       //将结果保存到redis
       rdd.foreachPartition(iter => {
         val jedis = new Jedis(Config.getString("redis.host"))
-        jedis.auth("123456")
         iter.foreach(kv => {
           val sent_id = kv._1.split("_")(0)
           val word = kv._1.split("_")(1)

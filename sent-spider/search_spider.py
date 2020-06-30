@@ -13,7 +13,7 @@ import config
 produce = KafkaProducer(bootstrap_servers=config.kafka_bootstrap_servers)
 
 # 创建连接
-client = redis.Redis(host=config.redis_host, port=config.redis_port,password=config.redis_pw)
+client = redis.Redis(host=config.redis_host, port=config.redis_port)
 
 print("=========爬虫已启动===========")
 
